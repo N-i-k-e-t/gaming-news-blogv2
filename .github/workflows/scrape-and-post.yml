@@ -1,37 +1,37 @@
 name: Scrape and Post Gaming News
 
 on:
-    schedule:
+  schedule:
     - cron: '0 * * * *' # Run every hour (change as needed)
 
 jobs:
-    scrape-and-post:
+  scrape-and-post:
     runs-on: ubuntu-latest
 
-steps:
-        - name: Checkout code
+    steps:
+      - name: Checkout code
         uses: actions/checkout@v3
 
-        - name: Set up Python
+      - name: Set up Python
         uses: actions/setup-python@v4
         with:
-            python-version: '3.9'  # Specify a specific Python version (e.g., '3.9') 
+          python-version: '3.9'  # Specify a specific Python version (e.g., '3.9') 
 
-        - name: Install dependencies
+      - name: Install dependencies
         run: pip install -r requirements.txt  # Install from requirements.txt
 
-        - name: Create database
+      - name: Create database
         run: python db.py  # Ensure database creation is done before scraping
 
-        - name: Run scraper script
+      - name: Run scraper script
         run: python scraper.py 
 
-        - name: Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-            folder: posts # Folder containing your generated HTML files
-            publish_dir: ./ # Optional: If your output is in a subfolder, specify it here
-            github_token: ${{ secrets.GITHUB_TOKEN }}
-            # Optionally:
-            #  branch: gh-pages # If your GitHub Pages branch is not 'gh-pages'
-            #  commit_message: 'Update gaming news' # Customize commit message
+          folder: posts # Folder containing your generated HTML files
+          publish_dir: ./ # Optional: If your output is in a subfolder, specify it here
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # Optionally:
+          #  branch: gh-pages # If your GitHub Pages branch is not 'gh-pages'
+          #  commit_message: 'Update gaming news' # Customize commit message
