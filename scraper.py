@@ -8,7 +8,7 @@ from apscheduler.schedulers.background import BackgroundScheduler
 import time
 
 # --- Gemini API Integration ---
-GEMINI_API_KEY = "AIzaSyCYdU4mQ9vDoWDZzpc_ENUhnK1hfN9FqYc"  # Replace with your actual API key
+GEMINI_API_KEY = ""  # Replace with your actual API key
 GEMINI_API_URL = "https://generativeai.googleapis.com/v1beta/models/text-bison:generateText"
 
 def summarize_with_gemini(text):
